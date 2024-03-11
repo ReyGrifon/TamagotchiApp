@@ -58,6 +58,11 @@
                     Health--;
                     throw new ArgumentException("Be careful, your pet will overeat");
                 }
+                if( Hunger == 10)
+                {
+                    Health--;
+                    throw new ArgumentException("Your pet is hungry");
+                }
                 if (value < 0 || value > 10)
                 {
                     throw new ArgumentException("Value incorrect");
@@ -73,8 +78,8 @@
             {
                 if (Fatigue == 10 && value != 0)
                 {
-                    Hunger++;
                     Health--;
+                    Hunger++;
                     throw new ArgumentException("Be careful, your pet is tired");
                 }
                 if (value < 0 || value > 10)

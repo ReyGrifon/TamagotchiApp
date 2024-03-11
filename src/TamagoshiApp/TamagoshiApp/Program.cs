@@ -70,8 +70,8 @@
                         try
                         {
                             pet.Fatigue = 0;
-                            pet.Health++;
                             pet.Hunger++;
+                            pet.Health++;
                             break;
                         }
                         catch (ArgumentException e)

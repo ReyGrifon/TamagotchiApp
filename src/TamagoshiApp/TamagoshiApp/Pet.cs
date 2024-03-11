@@ -64,6 +64,10 @@
                 {
                     throw new ArgumentException("Value incorrect");
                 }
+                if(value < _health)
+                {
+                    Happiness--;
+                }
                 _health = value;
             }
         }

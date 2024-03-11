@@ -1,19 +1,42 @@
 ﻿namespace TamagoshiApp
 {
+    /// <summary>
+    /// Класс питомца тамагочи.
+    /// </summary>
     public class Pet
     {
+
+        /// <summary>
+        /// Имя питомца.
+        /// </summary>
         private string _name;
+
+        /// <summary>
+        /// Уровень здоровья питомца.
+        /// </summary>
         private int _health;
+
+        /// <summary>
+        /// Уровень голода питомца.
+        /// </summary>
         private int _hunger;
+
+        /// <summary>
+        /// Уровень голода питомца.
+        /// </summary>
         private int _fatigue;
+
+        /// <summary>
+        /// Уровень счастья питомца
+        /// </summary>
         private int _happiness;
 
+        /// <summary>
+        /// Возвращает или задаёт имя.
+        /// </summary>
         public string Name
         {
-            get
-            {
-                return _name;
-            }
+            get => _name;
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
@@ -24,12 +47,12 @@
             }
         }
 
+        /// <summary>
+        /// Возвращает или задаёт здоровье
+        /// </summary>
         public int Health
         {
-            get
-            {
-                return _health;
-            }
+            get => _health;
             set
             {
                 if(value == 0)
@@ -45,12 +68,12 @@
             }
         }
 
+        /// <summary>
+        /// Возвращает или задаёт уровень голода.
+        /// </summary>
         public int Hunger
         {
-            get
-            {
-                return _hunger;
-            }
+            get => _hunger;
             set
             {
                 if( Hunger == 0 && value < Hunger)
@@ -58,9 +81,10 @@
                     Health--;
                     throw new ArgumentException("Be careful, your pet will overeat");
                 }
-                if( Hunger == 10)
+                if( Hunger == 10 && value >= Hunger)
                 {
                     Health--;
+                    Happiness--;
                     throw new ArgumentException("Your pet is hungry");
                 }
                 if (value < 0 || value > 10)
@@ -71,6 +95,9 @@
             }
         }
 
+        /// <summary>
+        /// Возвращает или задаёт уровень усталости.
+        /// </summary>
         public int Fatigue
         {
             get => _fatigue;
@@ -90,6 +117,9 @@
             }
         }
 
+        /// <summary>
+        /// Возвращает или задаёт уровень счастья.
+        /// </summary>
         public int Happiness
         {
             get => _happiness;
@@ -103,10 +133,61 @@
             }
         }
 
+        /// <summary>
+        /// Конструктор класса с параметром.
+        /// </summary>
+        /// <param name="name">Имя питомца.</param>
         public Pet(string name)
         {
             Name = name;
             Health = 10;
+            Hunger = 0;
+            Fatigue = 0;
+        }
+
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
+        public Pet()
+        {
+            Health = 10;
+            Hunger = 0;
+            Fatigue = 0;
+        }
+
+        /// <summary>
+        /// Кормление питомца.
+        /// </summary>
+        public void Feed()
+        {
+            Hunger--;
+        }
+
+        /// <summary>
+        /// Игра с питомцем.
+        /// </summary>
+        public void Play()
+        {
+            Fatigue++;
+            Happiness++;
+        }
+
+        /// <summary>
+        /// Отдых питомца.
+        /// </summary>
+        public void Sleep()
+        {
+            Fatigue = 0;
+            Hunger++;
+            Health++;
+        }
+
+        /// <summary>
+        /// Лечение питомца.
+        /// </summary>
+        public void Heal()
+        {
+            Health++;
         }
     }
 }
